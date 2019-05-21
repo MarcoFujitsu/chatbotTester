@@ -1,0 +1,22 @@
+{
+  "name": "messagetest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "debug": "nodemon --inspect index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.19.0",
+    "dateformat": "^3.0.3",
+    "express": "^4.17.0",
+    "nodemon": "^1.19.0",
+    "uuid": "^3.3.2",
+    "winston": "^3.2.1"
+  }
+}
