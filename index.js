@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 var logMessages = { }
+var testResults = { } 
 
 var port = 5006;
 
@@ -79,9 +80,14 @@ function processMessage(message, resFile) {
         }
         logMessages[sapRequest.conversation_id] = toLog;
         
-        // log(JSON.stringify(toLog, null, 2) , resFile);
-       
-        //res.send(response.data);
+        var responseMessages = response.data.results.messages;
+        var responseMessage = "";
+        
+        var testResult = {
+            "message" : sapRequest.message.content,
+            "response" : responseMessages
+        }
+        testResults[sapRequest.conversation_id] = testResult;
     })
     .catch(function (error) {
         console.log(error)
@@ -97,6 +103,7 @@ function log(message, filename)
 app.post("/messageFile", (req, res) => {
     var filePath = req.body.filepath;
     var outFile = req.body.testrun + dateFormat(Date.now(), "yyyymmddhhMMss");
+    var outFile2 = req.body.testrun + "_simple_" + dateFormat(Date.now(), "yyyymmddhhMMss");
 
     fs.readFile(filePath, "latin1",  function(err, data) {
         var messages = data.split(os.EOL);
@@ -109,8 +116,11 @@ app.post("/messageFile", (req, res) => {
         setTimeout(function() {
             log(JSON.stringify(logMessages, null, 2), outFile);
             logMessages = {}; 
+
+            log(JSON.stringify(testResults, null, 2), outFile2);
+            testResults = {};
             } 
-            , 3000);
+            , 10000);
         res.send("done");
     })
     
