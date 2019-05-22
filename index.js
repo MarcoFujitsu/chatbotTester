@@ -21,12 +21,9 @@ var port = 5006;
 
 var url = "https://api.cai.tools.sap/build/v1/dialog";
 
-var botId = "Token 48d19a71de8f9a3f1081531b77a9aa18"
+var botId = "Token 9e3b6c7dfed2adca7647d257b0fc2ccd"
 
-var header = { 
-    "Content-Type" : "application/json",
-    "Authorization" : "Token " + botId
-}
+
 app.post("/message", (req, res) => {
     var message = req.body.message;
     
