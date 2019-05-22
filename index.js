@@ -24,6 +24,10 @@ var url = "https://api.cai.tools.sap/build/v1/dialog";
 var botId = "Token 9e3b6c7dfed2adca7647d257b0fc2ccd"
 
 
+// {
+// 	"message" : "L'adresse e-mail Offres"
+// }
+
 app.post("/message", (req, res) => {
     var message = req.body.message;
     
@@ -96,6 +100,12 @@ function log(message, filename)
 {
     fs.writeFileSync(filename, message + os.EOL, { flag : "a"});
 }
+
+
+// {
+// 	"filepath": "C:\\a\\bottest\\input5.txt",
+// 	"testrun": "c:\\a\\bottest\\out\\testrun7"
+// }
 
 app.post("/messageFile", (req, res) => {
     var filePath = req.body.filepath;
